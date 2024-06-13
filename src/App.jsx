@@ -31,7 +31,7 @@ function App() {
 
   const onclickInvite = (id) => {
     if (invites.includes(id)) {
-      setInvites(prev => prev.filter(id => id !== id))
+      setInvites(prev => prev.filter(item => item !== id))
     } else {
       setInvites(prev => [...prev, id])
     }

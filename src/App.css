@@ -173,11 +173,12 @@ ul li {
   bottom: 15px;
 }
 
-.result-btn {
-  margin-top: 50px;
-}
-
 .disabled-btn-invite {
   pointer-events: none;
   opacity: 0.4;
 }
+
+.result-btn {
+  margin-top: 50px;
+}
+
