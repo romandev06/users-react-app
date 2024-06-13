@@ -18,9 +18,14 @@ function App() {
       .finally(setIsLoading(true))
   }, [])
 
+
+  const onClickInvite = () => {
+    <Result/>
+  }
+
   return (
     <section>
-      <Users isLoading={isLoading} users={users} />
+      <Users users={users} isLoading={isLoading} onClickInvite={onClickInvite} />
     </section>
   )
 }
