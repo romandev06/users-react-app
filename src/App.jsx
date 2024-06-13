@@ -10,6 +10,11 @@ function App() {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
+  const [success, setSuccess] = useState(false)
+
+  const [invites, setInvites] = useState([])
+
+
   useEffect(() => {
     fetch('https://reqres.in/api/users')
       .then(resp => resp.json())
@@ -19,13 +24,24 @@ function App() {
   }, [])
 
 
-  const onClickInvite = () => {
-    <Result/>
+  const onClickSendInvite = () => {
+    setSuccess(true)
   }
+
+
+  const onclickInvite = (id) => {
+    if (invites.includes(id)) {
+      setInvites(prev => prev.filter(id => id !== id))
+    } else {
+      setInvites(prev => [...prev, id])
+    }
+  }
+
 
   return (
     <section>
-      <Users users={users} isLoading={isLoading} onClickInvite={onClickInvite} />
+      {!success && <Users users={users} isLoading={isLoading} onClickSendInvite={onClickSendInvite} onclickInvite={onclickInvite} invites={invites} />}
+      {success && <Result invites={invites.length} />}
     </section>
   )
 }

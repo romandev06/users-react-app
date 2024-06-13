@@ -1,7 +1,7 @@
 import React from 'react'
 import Skeleton from './Skeleton'
 
-export default function User( {id, first_name, last_name, email, avatar} ) {
+export default function User({ id, first_name, last_name, email, avatar, isInvited, onclickInvite }) {
     return (
         <section className='user-section'>
             <li>
@@ -14,7 +14,7 @@ export default function User( {id, first_name, last_name, email, avatar} ) {
                             {email}
                         </p>
                     </div>
-                    <img className='add-user-icon' src="img/plus.svg" alt="" />
+                    <img onClick={() => onclickInvite(id)} className='add-user-icon' src={`img/${isInvited ? 'minus' : 'plus'}.svg`} alt="" />
                 </div>
             </li>
         </section>

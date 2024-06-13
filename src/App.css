@@ -52,6 +52,7 @@ body {
   border-radius: 25px;
   padding: 25px 10px;
   position: relative;
+  overflow-x: hidden;
 }
 
 .user-section li {
@@ -174,4 +175,9 @@ ul li {
 
 .result-btn {
   margin-top: 50px;
+}
+
+.disabled-btn-invite {
+  pointer-events: none;
+  opacity: 0.4;
 }

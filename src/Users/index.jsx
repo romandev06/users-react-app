@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import User from './User'
 import Skeleton from './Skeleton'
 import useInput from '../hooks/useInput'
+import Result from './Result'
 
-export default function Users( {users, isLoading, onClickInvite} ) {
+export default function Users( {users, isLoading, onClickSendInvite, onclickInvite, invites} ) {
 
     const input = useInput('')
 
@@ -18,11 +19,8 @@ export default function Users( {users, isLoading, onClickInvite} ) {
                     const fullName = user.first_name.toLowerCase().includes(input.value.toLowerCase()) || user.last_name.toLowerCase().includes(input.value.toLowerCase())
                     const email = user.email.toLowerCase().includes(input.value.toLowerCase())
 
-                    return (
-                        fullName,
-                        email
-                    )
-                }).map(user => <li><User key={user.id} {...user}/></li>)
+                    return fullName || email
+                }).map(user => <li><User key={user.id} onclickInvite={onclickInvite} isInvited={invites.includes(user.id)} {...user}/></li>)
             : (
                 <>
                     <Skeleton />
@@ -31,7 +29,8 @@ export default function Users( {users, isLoading, onClickInvite} ) {
                 </>
             )}
             </ul>
-            <button onClick={onClickInvite} className='send-invite'>Отправить приглашение</button>
+            <button onClick={onClickSendInvite} className={`${invites.length === 0 ? 'send-invite disabled-btn-invite' : 'send-invite'}`}>Отправить приглашение</button>
+            <p style={{position: 'absolute', bottom: '20px', right: '-110px'}}>{invites.length}</p>
         </section>
     )
 }
